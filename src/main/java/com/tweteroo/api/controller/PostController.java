@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.dto.PostDTO;
+import com.tweteroo.api.model.Post;
+import com.tweteroo.api.repository.PostRepository;
 
 @RestController
 @RequestMapping("/api/post")
