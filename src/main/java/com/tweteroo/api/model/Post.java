@@ -1,5 +1,6 @@
 package com.tweteroo.api.model;
 
+import com.tweteroo.api.dto.PostDTO;
 import com.tweteroo.api.dto.UserDTO;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 public class Post {
+
+  public Post(PostDTO data) {
+    this.name = data.name();
+    this.avatarUrl = data.avatarUrl();
+    this.text = data.text();
+  }
 
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
