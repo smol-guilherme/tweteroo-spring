@@ -15,7 +15,7 @@ import com.tweteroo.api.model.Post;
 import com.tweteroo.api.repository.PostRepository;
 
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("/tweets")
 public class PostController {
 
   @Autowired
@@ -31,5 +31,4 @@ public class PostController {
   public List<Post> listPage(@RequestParam(required = false) int page) {
     return repository.findAll();
   }
-
 }

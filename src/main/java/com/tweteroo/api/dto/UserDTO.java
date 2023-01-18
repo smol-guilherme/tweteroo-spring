@@ -1,5 +1,5 @@
 package com.tweteroo.api.dto;
 
-public record UserDTO(String name, String avatar_url) {
+public record UserDTO(String name, String avatarUrl) {
 
 }

@@ -14,7 +14,7 @@ public class User {
 
   public User(UserDTO data) {
     this.name = data.name();
-    this.avatarUrl = data.avatar_url();
+    this.avatarUrl = data.avatarUrl();
   }
 
   @GeneratedValue(strategy = GenerationType.AUTO)
