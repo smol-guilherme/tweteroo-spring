@@ -18,7 +18,7 @@ public class PostController {
   private PostRepository repository;
 
   @PostMapping
-  private String create(@RequestBody PostDTO req) {
+  public String create(@RequestBody PostDTO req) {
     repository.save(new Post(req));
     return "OK";
   }
