@@ -9,15 +9,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Post {
 
   public Post(PostDTO data) {
-    this.name = data.name();
-    this.avatarUrl = data.avatarUrl();
+    this.name = data.user();
+    this.avatarUrl = data.avatar();
     this.text = data.text();
+  }
+
+  public void setAvatar(String data) {
+    this.avatarUrl = data;
   }
 
   @Id

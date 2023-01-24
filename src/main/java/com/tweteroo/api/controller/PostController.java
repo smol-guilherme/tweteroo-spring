@@ -1,7 +1,7 @@
 package com.tweteroo.api.controller;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,22 +21,19 @@ import com.tweteroo.api.service.PostService;
 @RequestMapping("api/tweets")
 public class PostController {
 
+  @Autowired
   private PostService service;
 
   @PostMapping
   public String create(@RequestBody PostDTO data) {
+    System.out.println(data);
     service.create(data);
     return "OK";
   }
 
   @GetMapping
-  public List<Post> getList(@RequestParam(required = false) int page) {
+  public Page<Post> getList(@RequestParam String page) {
     return service.findAll(page);
-  }
-
-  @GetMapping("/health")
-  public String health() {
-    return "Hello";
   }
 
   @GetMapping("/{id}")

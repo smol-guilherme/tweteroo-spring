@@ -1,6 +1,7 @@
 package com.tweteroo.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.tweteroo.api.dto.UserDTO;
@@ -14,8 +15,8 @@ public class UserService {
   private UserRepository repository;
 
   public String create(UserDTO data) {
-    System.out.println(data);
     repository.save(new Users(data));
     return "OK";
   }
+
 }
