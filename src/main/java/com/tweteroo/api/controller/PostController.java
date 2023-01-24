@@ -2,8 +2,8 @@ package com.tweteroo.api.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,28 +14,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.dto.PostDTO;
 import com.tweteroo.api.model.Post;
-import com.tweteroo.api.repository.PostRepository;
+import com.tweteroo.api.service.PostService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/tweets")
 public class PostController {
 
-  @Autowired
-  private PostRepository repository;
+  private PostService service;
 
   @PostMapping
-  public String create(@RequestBody PostDTO req) {
-    repository.save(new Post(req));
+  public String create(@RequestBody PostDTO data) {
+    service.create(data);
     return "OK";
   }
 
   @GetMapping
-  public List<Post> listPage(@RequestParam(required = false) int page) {
-    return repository.findAll();
+  public List<Post> getList(@RequestParam(required = false) int page) {
+    return service.findAll(page);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Post> listPostsByUsername(@PathVariable Long id) {
-    return repository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+  public ResponseEntity<Post> listById(@PathVariable Long id) {
+    return service.listPostsById(id);
   }
+
 }
