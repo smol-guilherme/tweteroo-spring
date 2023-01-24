@@ -12,15 +12,14 @@ import com.tweteroo.api.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/sign-up")
+@RequestMapping("api/auth")
 public class UserController {
 
   @Autowired
   private UserService service;
 
-  @PostMapping
+  @PostMapping("sign-up")
   public String newUser(@RequestBody UserDTO req) {
     return service.create(req);
   }
-
 }

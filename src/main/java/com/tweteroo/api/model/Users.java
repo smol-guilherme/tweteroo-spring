@@ -8,14 +8,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-public class User {
+@NoArgsConstructor
+public class Users {
 
-  public User(UserDTO data) {
-    this.name = data.name();
-    this.avatarUrl = data.avatarUrl();
+  public Users(UserDTO data) {
+    this.avatarUrl = data.avatar();
+    this.username = data.username();
   }
 
   @Id
@@ -23,7 +25,7 @@ public class User {
   private long id;
 
   @Column(length = 64, nullable = false)
-  private String name;
+  private String username;
 
   @Column(length = 128, nullable = false)
   private String avatarUrl;

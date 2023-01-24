@@ -16,9 +16,9 @@ import com.tweteroo.api.dto.PostDTO;
 import com.tweteroo.api.model.Post;
 import com.tweteroo.api.service.PostService;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/tweets")
+@CrossOrigin(origins = "*")
+@RequestMapping("api/tweets")
 public class PostController {
 
   private PostService service;
@@ -32,6 +32,11 @@ public class PostController {
   @GetMapping
   public List<Post> getList(@RequestParam(required = false) int page) {
     return service.findAll(page);
+  }
+
+  @GetMapping("/health")
+  public String health() {
+    return "Hello";
   }
 
   @GetMapping("/{id}")
