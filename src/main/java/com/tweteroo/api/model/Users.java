@@ -20,6 +20,14 @@ public class Users {
     this.username = data.username();
   }
 
+  public void setName(String name) {
+    this.username = name;
+  }
+
+  public String getAvatar() {
+    return this.avatarUrl;
+  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;

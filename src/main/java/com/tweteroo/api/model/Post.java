@@ -1,7 +1,6 @@
 package com.tweteroo.api.model;
 
 import com.tweteroo.api.dto.PostDTO;
-import com.tweteroo.api.dto.UserDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

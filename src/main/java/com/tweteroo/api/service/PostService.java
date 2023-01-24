@@ -1,6 +1,10 @@
 package com.tweteroo.api.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +15,7 @@ import com.tweteroo.api.dto.PostDTO;
 import com.tweteroo.api.repository.PostRepository;
 import com.tweteroo.api.repository.UserRepository;
 import com.tweteroo.api.model.Post;
+import com.tweteroo.api.model.Users;
 
 @Service
 public class PostService {
@@ -21,10 +26,12 @@ public class PostService {
   @Autowired
   UserRepository getAvatar;
 
-  public String create(PostDTO req) {
-    Post newData = new Post(req);
+  public void create(PostDTO req, String user) {
+    Users userFound = getAvatar.findByUsername(user);
+
+    PostDTO entry = new PostDTO(user, userFound.getAvatar(), req.text());
+    Post newData = new Post(entry);
     repository.save(newData);
-    return "OK";
   }
 
   public Page<Post> findAll(String page) {
