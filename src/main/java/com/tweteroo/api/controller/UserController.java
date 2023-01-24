@@ -3,24 +3,24 @@ package com.tweteroo.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.dto.UserDTO;
-import com.tweteroo.api.model.User;
-import com.tweteroo.api.repository.UserRepository;
+import com.tweteroo.api.service.UserService;
 
-@CrossOrigin(origins = "*")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/sign-up")
 public class UserController {
 
   @Autowired
-  private UserRepository repository;
+  private UserService service;
 
   @PostMapping
-  public String create(UserDTO data) {
-    repository.save(new User(data));
-    return "OK";
+  public String newUser(@RequestBody UserDTO req) {
+    return service.create(req);
   }
+
 }
