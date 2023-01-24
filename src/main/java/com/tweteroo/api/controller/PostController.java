@@ -3,6 +3,7 @@ package com.tweteroo.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.dto.PostDTO;
-import com.tweteroo.api.dto.UserDTO;
 import com.tweteroo.api.model.Post;
-import com.tweteroo.api.model.User;
 import com.tweteroo.api.repository.PostRepository;
 
 @RestController
@@ -36,7 +35,7 @@ public class PostController {
   }
 
   @GetMapping("/{id}")
-  public List<Post> listPostsByUsername(@PathVariable Long id) {
-    return repository.findAllById(id);
+  public ResponseEntity<Post> listPostsByUsername(@PathVariable Long id) {
+    return repository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
   }
 }
